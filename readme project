@@ -434,3 +434,163 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+Decisiones Técnicas Relevantes del Desarrollo
+1️ Uso de Yii2 Advanced Template
+
+Decisión:
+Se utilizó Yii2 Advanced para separar claramente frontend y backend.
+
+Motivo:
+
+Permite aislar la administración (usuarios, roles, productos) del frontend.
+
+Facilita la implementación de RBAC y control de acceso.
+
+Escala mejor para futuros módulos o API REST.
+
+2️ Implementación de RBAC nativo de Yii2
+
+Decisión:
+Se implementó RBAC con authManager de Yii2, usando roles y permisos granulares.
+
+Motivo:
+
+Es el mecanismo recomendado por Yii2.
+
+Permite control fino por acción (create, update, delete, view).
+
+Facilita auditoría y mantenimiento.
+
+Resultado:
+
+Roles: Admin, Editor, Viewer
+
+Permisos por operación CRUD
+
+Asignación dinámica desde la interfaz
+
+3 Control de acceso desde el backend (AccessControl + can())
+
+Decisión:
+Se combinó:
+
+AccessControl en controllers
+
+Yii::$app->user->can() en vistas
+
+Motivo:
+
+Seguridad en backend (no solo UI).
+
+Previene accesos por URL directa.
+
+Mejora la experiencia de usuario mostrando solo acciones permitidas.
+
+4️ Soft Delete para usuarios
+
+Decisión:
+Los usuarios no se eliminan físicamente, se manejan con estado activo/inactivo.
+
+Motivo:
+
+Evita pérdida de información histórica.
+
+Permite reactivar usuarios.
+
+Buenas prácticas empresariales.
+
+5️ Gestión de productos con validaciones de negocio
+
+Decisión:
+Se implementó CRUD de productos con validaciones como:
+
+Stock no negativo
+
+Campos obligatorios
+
+Tipos de datos correctos
+
+Motivo:
+
+Evita inconsistencias en base de datos.
+
+La lógica de negocio se valida en el servidor.
+
+6️⃣ Listado de productos con filtros (RF-07)
+
+Decisión:
+Se utilizó:
+
+ActiveDataProvider
+
+Modelo ProductSearch
+
+GridView con paginación, ordenamiento y filtros
+
+Motivo:
+
+Rendimiento óptimo con grandes volúmenes de datos.
+
+Separación clara entre modelo y lógica de búsqueda.
+
+UX limpia y profesional.
+
+7️ Filtros por rango de precio
+
+Decisión:
+Se implementaron filtros personalizados precio_desde y precio_hasta.
+
+Motivo:
+
+Cumple requerimiento funcional.
+
+Evita lógica compleja en la vista.
+
+Facilita extensión futura (fechas, stock, etc.).
+
+8️ Internacionalización y UX
+
+Decisión:
+Los campos visibles al usuario se mostraron en español, aunque internamente se mantuvieron nombres técnicos (precio desde, pricio hasta).
+
+Motivo:
+
+Código limpio y estándar.
+
+Interfaz amigable para usuarios finales.
+
+9️ Uso de Docker para el entorno de desarrollo
+
+Decisión:
+Se utilizó Docker + docker-compose para levantar todo el proyecto.
+
+Motivo:
+
+Entorno reproducible.
+
+Evita problemas de configuración local.
+
+Facilita la evaluación técnica.
+
+Servicios definidos:
+
+MySQL 5.7 con volumen persistente
+
+Backend Yii2
+
+Frontend Yii2
+
+ Seguridad
+
+Decisiones clave:
+
+Passwords encriptados con bcrypt
+
+Protección CSRF activa
+
+Acciones sensibles protegidas por POST
+
+Conclusión Técnica
+
+El enfoque priorizó seguridad, escalabilidad, buenas prácticas de Yii2 y claridad de código, cumpliendo todos los requerimientos funcionales con una arquitectura preparada para crecimiento futuro (API REST, nuevos roles, más módulos).
+
