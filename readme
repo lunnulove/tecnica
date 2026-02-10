@@ -1,0 +1,8 @@
+## Usuario administrador por defecto
+
+Usuario: admin  
+Email: admin@admin.com  
+Password: Admin123*  
+
+El usuario se crea automáticamente mediante migration.
+RBAC inicializado con `php yii rbac/init`.
