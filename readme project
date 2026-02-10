@@ -90,6 +90,16 @@ Exportación de catálogo de productos a PDF o Excel
 
 Cierre físico vs sistema
 
+COMANDO DE DOKER 
+docker-compose.yml
+docker-compose up -d --build
+docker exec -it yii2-backend bash
+EJECUTAR MIGRACIONES 
+php yii migrate
+php yii rbac/init
+LOGS
+docker-compose logs -f backend
+
 DISEÑO DE LA BASE DE DATOS 
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
